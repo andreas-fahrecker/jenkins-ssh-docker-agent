@@ -1,5 +1,4 @@
 FROM jenkins/ssh-agent
-USER root
 
 RUN groupadd -g 281 docker
 RUN usermod -aG docker jenkins
@@ -20,5 +19,3 @@ RUN echo \
 
 RUN apt-get update
 RUN apt-get install -y docker-ce-cli
-
-USER jenkins
