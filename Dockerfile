@@ -19,3 +19,23 @@ RUN echo \
 
 RUN apt-get update
 RUN apt-get install -y docker-ce-cli
+
+# Install flutter
+RUN apt-get update
+RUN apt-get install -y\
+      curl git wget \
+      unzip libgconf-2-4 gdb \
+      libstdc++6 libglu1-mesa fonts-droid-fallback \
+      lib32stdc++6 python3 sed
+
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+RUN git config --global --add safe.directory /usr/local/flutter
+
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
+
+RUN chown -R jenkins:jenkins /usr/local/flutter
+
+# Run flutter doctor and upgrade
+RUN flutter doctor -v
+RUN flutter channel master
+RUN flutter upgrade
