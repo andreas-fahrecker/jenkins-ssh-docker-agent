@@ -38,6 +38,7 @@ RUN chown -R jenkins:jenkins /usr/local/flutter
 # Run flutter doctor and upgrade
 USER jenkins
 
+RUN flutter config --no-cli-animations
 RUN flutter doctor -v
 RUN flutter channel master
 RUN flutter upgrade
