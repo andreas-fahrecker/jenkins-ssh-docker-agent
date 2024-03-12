@@ -36,6 +36,6 @@ ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PAT
 RUN chown -R jenkins:jenkins /usr/local/flutter
 
 # Run flutter doctor and upgrade
-RUN su - jenkins -c flutter doctor -v
-RUN su - jenkins -c flutter channel master
-RUN su - jenkins -c flutter upgrade
+RUN su jenkins -c flutter doctor -v
+RUN su jenkins -c flutter channel master
+RUN su jenkins -c flutter upgrade
