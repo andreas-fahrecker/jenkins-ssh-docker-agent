@@ -44,3 +44,7 @@ RUN flutter channel master
 RUN flutter upgrade
 
 USER root
+
+#Install OpenSSL
+RUN apt-get update
+RUN apt-get install -y openssl
