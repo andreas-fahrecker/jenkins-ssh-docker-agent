@@ -9,7 +9,7 @@ RUN apk add --no-cache docker docker-compose
 RUN apk add --no-cache tea
 
 # Install flutter
-RUN apk add --no-cache curl
+RUN apk --no-cache add bash curl git ca-certificates wget unzip 
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 RUN git config --global --add safe.directory /usr/local/flutter
 
