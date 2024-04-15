@@ -9,8 +9,12 @@ RUN apk add --no-cache docker docker-compose
 RUN apk add --no-cache tea
 
 # Install flutter
-RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing flutter 
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+RUN git config --global --add safe.directory /usr/local/flutter
 
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
+
+RUN chown -R jenkins:jenkins /usr/local/flutter
 # Run flutter doctor and upgrade
 USER jenkins
 

@@ -17,7 +17,6 @@ RUN echo \
       "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
       tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-RUN apt-get update
 RUN apt-get install -y docker-ce-cli
 
 # Install tea
@@ -26,7 +25,6 @@ RUN git clone https://gitea.com/gitea/tea.git
 RUN cd tea && make && make install
 
 # Install flutter
-RUN apt-get update
 RUN apt-get install -y\
       curl git wget \
       unzip libgconf-2-4 gdb \
@@ -51,5 +49,4 @@ RUN flutter upgrade
 USER root
 
 #Install OpenSSL
-RUN apt-get update
 RUN apt-get install -y openssl
