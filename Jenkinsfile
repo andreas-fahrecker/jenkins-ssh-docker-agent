@@ -1,7 +1,9 @@
 #!groovy
 
 pipeline {
-    agent none
+    agent {
+        label 'linux'
+    }
 
     stages {
         stage('Build/Push Docker Image') {
@@ -9,42 +11,43 @@ pipeline {
                 beforeAgent true;
                 branch 'main'
             }
-            agent {
-                label 'linux'
-            }
-            environment {
-                DOCKER_HUB_CREDENTIALS = credentials('docker-hub-fah16145')
-            }
             stages {
                 stage('Login') {
+                    environment {
+                        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-fah16145')
+                    }
                     steps {
                         sh 'docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW}'
                     }
                 }
-                stage('Default Image') {
-                    stages {
-                        stage('Build') {
-                            steps {
-                                sh 'docker build -t fah16145/jenkins-ssh-docker-agent:latest .'
+                stage('Build & Push') {
+                    parallel {
+                        stage('Default Image') {
+                            stages {
+                                stage('Build Default Image') {
+                                    steps {
+                                        sh 'docker build -t fah16145/jenkins-ssh-docker-agent:latest .'
+                                    }
+                                }
+                                stage('Push Default Image') {
+                                    steps {
+                                        sh 'docker push fah16145/jenkins-ssh-docker-agent:latest'
+                                    }
+                                }
                             }
                         }
-                        stage('Push') {
-                            steps {
-                                sh 'docker push fah16145/jenkins-ssh-docker-agent:latest'
-                            }
-                        }
-                    }
-                }
-                stage('Alpine Image') {
-                    stages {
-                        stage('Build') {
-                            steps {
-                                sh 'docker build -t fah16145/jenkins-ssh-docker-agent:alpine alpine/'
-                            }
-                        }
-                        stage('Push') {
-                            steps {
-                                sh 'docker push fah16145/jenkins-ssh-docker-agent:alpine'
+                        stage('Alpine Image') {
+                            stages {
+                                stage('Build Alpine Image') {
+                                    steps {
+                                        sh 'docker build -t fah16145/jenkins-ssh-docker-agent:alpine alpine/'
+                                    }
+                                }
+                                stage('Push Alpine Image') {
+                                    steps {
+                                        sh 'docker push fah16145/jenkins-ssh-docker-agent:alpine'
+                                    }
+                                }
                             }
                         }
                     }
