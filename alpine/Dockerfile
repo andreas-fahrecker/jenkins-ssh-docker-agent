@@ -9,7 +9,7 @@ RUN apk add --no-cache docker docker-compose
 RUN apk add --no-cache tea
 
 # Install flutter
-RUN apk add --no-cache ----repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing flutter 
+RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing flutter 
 
 RUN flutter config --no-cli-animations
 RUN flutter doctor -v
