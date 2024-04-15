@@ -53,7 +53,3 @@ USER root
 #Install OpenSSL
 RUN apt-get update
 RUN apt-get install -y openssl
-
-#Install Node.js
-RUN apt-get update
-RUN apt-get install -y nodejs npm

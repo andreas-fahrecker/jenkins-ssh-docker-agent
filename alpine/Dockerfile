@@ -11,13 +11,15 @@ RUN apk add --no-cache tea
 # Install flutter
 RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/testing flutter 
 
+# Run flutter doctor and upgrade
+USER jenkins
+
 RUN flutter config --no-cli-animations
 RUN flutter doctor -v
 RUN flutter channel master
 RUN flutter upgrade
 
+USER root
+
 #Install OpenSSL
 RUN apk add --no-cache openssl
-
-#Install Node.js
-RUN apk add --no-cache nodejs npm
