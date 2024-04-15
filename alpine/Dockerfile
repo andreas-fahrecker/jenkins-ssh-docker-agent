@@ -16,7 +16,6 @@ USER jenkins
 
 RUN flutter config --no-cli-animations
 RUN flutter doctor -v
-RUN flutter upgrade
 
 USER root
 
