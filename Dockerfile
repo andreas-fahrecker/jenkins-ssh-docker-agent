@@ -1,4 +1,4 @@
-FROM jenkins/ssh-agent
+FROM jenkins/ssh-agent:latest-jdk21
 
 RUN groupadd -g 281 docker
 RUN usermod -aG docker jenkins

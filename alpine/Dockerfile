@@ -1,4 +1,4 @@
-FROM jenkins/ssh-agent:alpine
+FROM jenkins/ssh-agent:alpine-jdk21
 
 RUN addgroup --gid 281 docker
 RUN addgroup jenkins docker
