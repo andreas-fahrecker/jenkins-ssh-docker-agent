@@ -24,6 +24,8 @@ RUN flutter doctor -v
 RUN flutter channel master
 RUN flutter upgrade
 
+RUN dart pub global activate flutter_distributor
+
 USER root
 
 #Install OpenSSL
