@@ -48,6 +48,7 @@ RUN flutter channel master
 RUN flutter upgrade
 
 RUN dart pub global activate flutter_distributor
+RUN echo 'export PATH="$PATH:`dart pub global path`"' >> ~/.bashrc
 
 USER root
 
