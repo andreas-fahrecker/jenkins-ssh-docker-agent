@@ -31,3 +31,7 @@ USER root
 
 #Install OpenSSL
 RUN apk add --no-cache openssl
+
+#Install git lfs
+RUN apk add --no-cache git-lfs
+RUN git lfs install --system

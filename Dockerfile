@@ -54,3 +54,7 @@ USER root
 
 #Install OpenSSL
 RUN apt-get install -y openssl
+
+#Install git lfs
+RUN apt-get install -y git-lfs
+RUN git lfs install --system
