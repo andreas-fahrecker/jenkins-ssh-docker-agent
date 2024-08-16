@@ -21,9 +21,9 @@ RUN apt-get update
 RUN apt-get install -y docker-ce-cli
 
 # Install tea
-RUN apt-get install -y git make golang
-RUN git clone https://gitea.com/gitea/tea.git
-RUN cd tea && make && make install
+# RUN apt-get install -y git make golang
+# RUN git clone https://gitea.com/gitea/tea.git
+# RUN cd tea && make && make install
 
 # Install flutter
 RUN apt-get install -y\
